@@ -1,0 +1,43 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg-5">
+            <h1 class="mb-4">New Quiz</h1>
+            <% if (locals.error) { %>
+                <div class="alert alert-danger" role="alert">
+                    <h5 class="alert-heading">Oops! An error has occurred.</h5>
+                    <%= error %>
+                </div>
+            <% } %>
+            <form method="post" action="/submit-quiz">
+                <div class="mb-3">
+                    <label for="titleInput" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="titleInput" name="title" required>
+                </div>
+                <!-- List selectable notes for quiz -->
+                <% if (locals.notes) { %>
+                <p class="fs-6 fw-bold mt-4 me-2">Select notes for quiz:</p>
+                <ul class="list-group mb-4">
+                    <% notes.forEach(n => { %>
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="quizNote" value="<%= n.id %>" id="cb-<%= n.id %>">
+                        <label class="form-check-label" for="cb-<%= n.id %>"><%= n.title %></label>
+                    </li>
+                    <% }); %>
+                </ul>
+                <% } %>
+                <a href="/quizzes" class="btn btn-light">Cancel</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+        document.getElementById("titleInput").focus();
+    }
+</script>
+
+<%- include('partials/footer.ejs') %>

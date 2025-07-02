@@ -1,0 +1,55 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg-5">
+            <h1 class="mb-4">Edit Note</h1>
+            <% if (locals.note) { %>
+            <form method="post" action="/save-note">
+                <input type="hidden" name="noteId" value="<%= note.id %>">
+                <div class="mb-3">
+                    <label for="titleInput" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="titleInput" name="title" value="<%= note.title %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descriptionInput" class="form-label">Description</label>
+                    <textarea class="form-control" id="descriptionInput" name="description" rows="4" required><%= note.description %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="quizKeywordInput" class="form-label">Quiz Keyword</label>
+                    <input type="text" class="form-control" id="quizKeywordInput" name="quizKeyword" value="<%= note.quiz_keyword %>" aria-describedby="quizKeywordHelp" required>
+                    <div id="quizKeywordHelp" class="form-text">Must be a word or number used within the description.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="referenceInput" class="form-label">Reference URL</label>
+                    <input type="url" class="form-control" id="referenceInput" name="referenceUrl" value="<%= note.reference_url %>">
+                </div>
+                <% if (locals.allCategories) { %>
+                <div class="mb-3">
+                    <label for="categorySelection" class="form-label">Categories</label>
+                    <select class="form-select" id="categorySelection" name="categories" size="<%= allCategories.length %>" multiple aria-label="Select multiple categories." aria-describedby="categoriesHelp" required>
+                        <% allCategories.forEach(c => { %>
+                            <% if (locals.selectedCategories && selectedCategories.find((sc) => c.id == sc.category_id) !== undefined) { %>
+                                <option value="<%= c.id %>" selected><%= c.title %></option>
+                            <% } else { %>
+                                <option value="<%= c.id %>"><%= c.title %></option>
+                            <% } %>
+                        <% }); %>
+                    </select>
+                    <div id="categoriesHelp" class="form-text">For windows: Hold down the control (ctrl) button to select multiple options. For Mac: Hold down the command button to select multiple options.</div>
+                </div>
+                <% } %>
+                <div class="float-start">
+                    <a href="/" class="btn btn-light">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                <div class="float-end">
+                    <button type="submit" formaction="/delete-note" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</div>
+    
+<%- include('partials/footer.ejs') %>

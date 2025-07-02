@@ -1,0 +1,29 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg-5">
+            <h1 class="mb-4">Login</h1>
+            <p>
+                <a class="btn btn-primary" href="/auth/google" role="button">
+                    <i class="bi bi-google d-inline-block me-2"></i>
+                    Sign In with Google
+                </a>
+            </p>
+            <p class="mt-5 fw-bold">Or, log in with your Study Notes credentials.</p>
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="username" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+    
+<%- include('partials/footer.ejs') %>

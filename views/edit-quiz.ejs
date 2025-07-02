@@ -1,0 +1,48 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg-5">
+            <h1 class="mb-4">Edit Quiz</h1>
+            <% if (locals.error) { %>
+                <div class="alert alert-danger" role="alert">
+                    <h5 class="alert-heading">Oops! An error has occurred.</h5>
+                    <%= error %>
+                </div>
+            <% } %>
+            <% if (locals.quiz) { %>
+            <form method="post" action="/save-quiz">
+                <input type="hidden" name="quizId" value="<%= quiz.id %>">
+                <div class="mb-3">
+                    <label for="titleInput" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="titleInput" name="title" value="<%= quiz.title %>" required>
+                </div>
+                <% if (locals.notes) { %>
+                <p class="fs-6 fw-bold mt-4 me-2">Select notes for quiz:</p>
+                <ul class="list-group mb-4">
+                    <% notes.forEach(n => { %>
+                    <li class="list-group-item">
+                        <% if (locals.selectedNotes && selectedNotes.includes(n.id)) { %>
+                        <input class="form-check-input me-1" type="checkbox" name="quizNote" value="<%= n.id %>" id="cb-<%= n.id %>" checked>
+                        <% } else { %>
+                        <input class="form-check-input me-1" type="checkbox" name="quizNote" value="<%= n.id %>" id="cb-<%= n.id %>">
+                        <% } %>
+                        <label class="form-check-label" for="cb-<%= n.id %>"><%= n.title %></label>
+                    </li>
+                    <% }); %>
+                </ul>
+                <% } %>
+                <div class="float-start">
+                    <a href="/quizzes" class="btn btn-light">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                <div class="float-end">
+                    <button type="submit" formaction="/delete-quiz" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</div>
+    
+<%- include('partials/footer.ejs') %>
