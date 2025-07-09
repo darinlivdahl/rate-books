@@ -1,0 +1,1 @@
+export const nytBaseEndpoint = "https://api.nytimes.com/svc/books/v3";
