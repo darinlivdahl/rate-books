@@ -11,32 +11,30 @@ The Rate Books web app allows users to browse best seller lists by category and 
 - [Vite](https://vitejs.dev/)
 - `.env` file (see below)
 
-## API Setup
+## 🔌 API Setup
 
-### New York Times Books API
+### 1. New York Times Books API
 
-Follow the steps at the [Get Started](https://developer.nytimes.com/get-started) page on the New York Times developer portal.
+1. Follow the steps at the [Get Started](https://developer.nytimes.com/get-started) page on the New York Times developer portal.
+2. When you create an app on the developer site, you will only need to enable the **_Books API_** from the list of available APIs.
+3. Make a note of your API key to use in the `.env` file mentioned below.
 
-When you create an app on the developer site, you will only need to enable the **_Books API_** from the list of available APIs.
+### 2. Google OAuth 2.0 API
 
-Make a note of your API key to use in the `.env` file mentioned below.
-
-### Google OAuth 2.0 API
-
-1. Go to [Google Cloud console](https://cloud.google.com/cloud-console) and login using a Google Account.
-2. In the top-right of the header, click on the **_Console_** link.
-3. Click the Project picker button next to the Google Cloud logo and search.
-4. In the Select a project modal window, click the New Project in the top right.
+1. Go to [Google Cloud console](https://cloud.google.com/cloud-console) and login using a Google Account
+2. In the top-right of the header, click on the **_Console_** link
+3. Click the Project picker button next to the Google Cloud logo and search
+4. In the Select a project modal window, click the New Project link in the top right
 5. Name the project **_Rate Books_**
-6. On the project welcome page, click on **APIs & Servies** under the Quick access section.
-7. On the APIs & servies page click the **Credentials** link in the left-hand navigation.
-8. On the Credentials page, click the + Create credentials link and choose **_OAuth client ID_**.
-9. For the Application type, choose **_Web application_**.
+6. On the project welcome page, click on **APIs & Servies** under the Quick access section
+7. On the APIs & servies page, click the **Credentials** link in the left-hand navigation
+8. On the Credentials page, click the + Create credentials link and choose **_OAuth client ID_**
+9. For the Application type, choose **_Web application_**
 10. Give the credential a name of **Rate Books**
 11. For the **Authorized JavaScript origins**, add URI for `http://localhost:8080`
 12. For the Authorized redirect URIs, add URI for `http://localhost:8080/auth/google/ratebooks`
-13. Click the Create button.
-14. When available, make note of the Client ID and Client Secret to be later used in the project `.env` file (see below).
+13. Click the Create button
+14. When available, make note of the Client ID and Client Secret to be later used in the project `.env` file (see below)
 
 ## 📦 Installation
 
@@ -132,3 +130,10 @@ npm run dev
 ```
 Make sure you are in the root project folder _rate-books_
 
+## 📝 License
+
+MIT - Condition: The use of the New York Times Books API data for commercial purposes is prohibited.
+
+## 📫 Contact
+
+Created by Darin Livdahl – feel free to reach out!
