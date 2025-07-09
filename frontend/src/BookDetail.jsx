@@ -30,7 +30,6 @@ function BookDetail(props) {
                 const getReviewsResponse = await axios.get('/api/reviews/' + bookId);
                 setReviewList(getReviewsResponse.data);
 
-                console.clear();
                 // Check if logged in user has already reviewed the book
                 if (appUser) {
                     let tempReviewsArray = getReviewsResponse.data;
@@ -47,6 +46,7 @@ function BookDetail(props) {
                     });
                     setLoggedInUserHasReviewed(checkReviewed);
                     tempReviewsArray = [];
+                    // Determine if the review section with form should be displayed
                     if (loggedInUserHasReviewed === false || (loggedInUserHasReviewed && isReviewEdit)) {
                         setShowReviewSection(true);
                     } else {
@@ -65,8 +65,6 @@ function BookDetail(props) {
                 } else {
                     console.error('General Error:', error.message);
                 }
-            } finally {
-                console.log('BookDetail Axios has completed');
             }
         };
         fetchData();

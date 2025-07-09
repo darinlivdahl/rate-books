@@ -26,8 +26,6 @@ function Menu(props) {
 					sessionStorage.setItem('menu', JSON.stringify(tempArr));
 				} catch (error) {
 					console.error("Error fetching menu data:", error);
-				} finally {
-					console.log('Fetch menu data complete.');
 				}
 			};
 			fetchData();

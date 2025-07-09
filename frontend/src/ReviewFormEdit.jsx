@@ -21,8 +21,6 @@ function ReviewFormEdit(props) {
                 });
             } catch (error) {
                 console.error(error);
-            } finally {
-                console.log('review edit axios useEffect has completed');
             }
         };
         fetchData();

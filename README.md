@@ -43,12 +43,16 @@ The Rate Books web app allows users to browse best seller lists by category and 
 git clone https://github.com/darinlivdahl/rate-books.git
 cd rate-books
 ```
-### 2. Install Backend Dependencies
+### 2. Install Root Dependencies
+```
+npm install
+```
+### 3. Install Backend Dependencies
 ```
 cd backend
 npm install
 ```
-### 3. Install Frontend Dependencies
+### 4. Install Frontend Dependencies
 ```
 cd ../frontend
 npm install
