@@ -1,6 +1,21 @@
+import { useState } from 'react';
+
 function Header(props) {
 
-    const { appUser, showSearch, onHandleLogout } = props;
+    const { appUser, showSearch, onHandleSearch, onHandleLogout } = props;
+    const [searchTerm, setSearchTerm] = useState('');
+
+    function handleSearchChange(e) {
+        setSearchTerm(e.target.value);
+    }
+
+    function handleSearch(e) {
+        e.preventDefault();
+        onHandleSearch(searchTerm);
+        // Reset search input after submission
+        const searchForm = document.getElementById('search-form');
+        searchForm.reset();
+    }
 
     return (
         <>
@@ -17,10 +32,10 @@ function Header(props) {
                                     <ul class="flex flex-col sm:flex-row flex-wrap gap-2 md:gap-10 justify-items-start items-start md:items-center">
                                         <li class="flex-shrink w-auto">
                                             {showSearch && (
-                                                <>
-                                                    <input class="bg-white inset-shadow-xs border border-gray-300 rounded-xl p-2 pr-4 pl-4 mr-1" type="search" placeholder="Book Title" />
-                                                    <button class="bg-emerald-600 text-white rounded-xl p-2 pr-4 pl-4 cursor-pointer">Search</button>
-                                                </>
+                                                <form id="search-form">
+                                                    <input class="bg-white inset-shadow-xs border border-gray-300 rounded-xl p-2 pr-4 pl-4 mr-1" type="search" placeholder="Title or Author" onChange={handleSearchChange} />
+                                                    <button class="bg-emerald-600 text-white rounded-xl p-2 pr-4 pl-4 cursor-pointer" onClick={handleSearch}>Search</button>
+                                                </form>
                                             )}
                                         </li>
                                         <li class="flex-shrink w-auto">

@@ -1,6 +1,6 @@
 function BookPreview(props) {
 
-    const { id, image, title, author, description, publisher, rank, onBookSelected } = props;
+    const { id, image, title, author, description, publisher, rank, list, onBookSelected } = props;
 
     // Create reference to proxy image of book from external source
     const encodedUrl = encodeURIComponent(image);
@@ -38,6 +38,13 @@ function BookPreview(props) {
                         
                         <dt class="font-sans font-bold">Rank</dt>
                         <dd class="font-serif mb-2">{rank}</dd>
+
+                        {list && (
+                            <>
+                                <dt class="font-sans font-bold">List</dt>
+                                <dd class="font-serif mb-2">{list}</dd>
+                            </>
+                        )}
                     </dl>
                     <a href="#" class="block text-emerald-600" onClick={handleBookClick}>Write a Review</a>
                 </div>

@@ -13,17 +13,42 @@ function Menu(props) {
 			const fetchData = async () => {
 				try {
 					const response = await axios.get('/api/menu'); // Express endpoint
-					let tempArr = [];
-					const listData = response.data;
-					listData.forEach(l => {
-						tempArr.push({
-							display_name: l.display_name,
-							list_name_encoded: l.list_name_encoded,
-							list_id: l.list_id
+					
+					let tempListArr = [];
+					let tempSearchDataArr = [];
+					const overviewData = response.data;
+					overviewData.forEach(o => {
+						// Get list data for menu
+						tempListArr.push({
+							display_name: o.display_name,
+							list_name_encoded: o.list_name_encoded,
+							list_id: o.list_id
 						});
+						// Get search data
+						if (o.books) {
+							o.books.forEach(b => {
+								tempSearchDataArr.push({
+									author: b.author,
+									book_image: b.book_image,
+									description: b.description,
+									publisher: b.publisher,
+									rank: b.rank,
+									title: b.title,
+									isbns: [{
+										isbn10: b.isbns[0].isbn10,
+										isbn13: b.isbns[0].isbn13
+									}],
+									list: o.display_name
+								});
+							});
+						}
 					});
-					setMenuList(tempArr);
-					sessionStorage.setItem('menu', JSON.stringify(tempArr));
+					setMenuList(tempListArr);
+					sessionStorage.setItem('menu', JSON.stringify(tempListArr));
+					// Store overview book listing for searchable data
+					sessionStorage.setItem('searchData', JSON.stringify(tempSearchDataArr));
+					tempListArr = null; // cleanup
+					tempSearchDataArr = null // cleanup
 				} catch (error) {
 					console.error("Error fetching menu data:", error);
 				}

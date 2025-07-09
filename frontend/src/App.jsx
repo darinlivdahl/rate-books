@@ -15,6 +15,7 @@ function App() {
 	const [bookListDisplayName, setBookListDisplayName] = useState('Hardcover Fiction');
 	const [isBookDetail, setIsBookDetail] = useState(false);
 	const [bookShowDetails, setBookShowDetails] = useState({});
+	const [searchTerm, setSearchTerm] = useState('');
 
 	useEffect(() => {
 		axios.get('http://localhost:8080/auth/current-user', { withCredentials: true })
@@ -27,13 +28,23 @@ function App() {
 		.then(() => setUser(null));
 	}
 
+	function handleReset() {
+		if (searchTerm.length) {
+			setSearchTerm('');
+		}
+		if (isBookDetail === true) {
+			setIsBookDetail(false);
+		}
+	}
+
 	function handleListChange(listDetail) {
-		setIsBookDetail(false); // reset Book content area
+		handleReset(); // reset Book content area
 		setBookListName(listDetail.encodedListName);
 		setBookListDisplayName(listDetail.displayListName);
 	}
 
 	function handleBookShowDetail(detail) {
+		handleReset(); // reset Book content area
 		setBookShowDetails(detail);
 		setIsBookDetail(true);
 	}
@@ -54,14 +65,20 @@ function App() {
 			return <Books
 				list={bookListName}
 				listheading={bookListDisplayName}
+				search={searchTerm}
 				onBookShowDetail={handleBookShowDetail}
 			/>;
 		}
 	}
 
+	function handleSearch(term) {
+		handleReset(); // reset Book content area
+		setSearchTerm(term);
+	}
+
 	return (
 		<>
-			<Header appUser={user} showSearch={isSearchVisible} onHandleLogout={handleLogout} />
+			<Header appUser={user} showSearch={isSearchVisible} onHandleSearch={handleSearch} onHandleLogout={handleLogout} />
 			<main>
 				<div class="container w-[90%] md:w-[80%] 2xl:w-[70%] mx-auto mt-4 md:mt-6 lg:mt-10">
 					<section>
