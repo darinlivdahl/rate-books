@@ -71,7 +71,6 @@ function ReviewFormEdit(props) {
                     // setMessage("Review deleted successfully!");
                     // Reset review form after successful delete
                     onSuccess();
-                    // props.onCancelReviewEdit();
                 } else {
                     setMessage("Failed to delete.");
                 }

@@ -65,14 +65,12 @@ function App() {
 			<main>
 				<div class="container w-[90%] md:w-[80%] 2xl:w-[70%] mx-auto mt-4 md:mt-6 lg:mt-10">
 					<section>
-						<div class="container">
-							<div class="flex flex-col lg:flex-row">
-								<div class="flex-1">
-									<Menu onListChange={handleListChange} />
-								</div>
-								<div class="flex-2">
-									<BookContent />
-								</div>
+						<div class="flex flex-col lg:flex-row">
+							<div class="flex-1">
+								<Menu onListChange={handleListChange} />
+							</div>
+							<div class="flex-2">
+								<BookContent />
 							</div>
 						</div>
 					</section>

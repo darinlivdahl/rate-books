@@ -9,13 +9,10 @@ export const setupStrategies = (passport) => {
     passport.use(new LocalStrategy(
         { usernameField: 'email' },
         async (email, password, done) => {
-            // console.log('try setupStrategies');
             try {
                 const user = await findUserByEmail(email);
-                // console.log('user is: ' + JSON.stringify(user));
                 if (!user) return done(null, false, { message: 'No user found' });
                 const match = await bcrypt.compare(password, user.password);
-                // console.log('match => ' + match);
                 return match ? done(null, user) : done(null, false, { message: 'Incorrect password' });
             } catch (err) {
                 return done(err);

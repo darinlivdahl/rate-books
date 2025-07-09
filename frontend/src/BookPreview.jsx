@@ -38,9 +38,6 @@ function BookPreview(props) {
                         
                         <dt class="font-sans font-bold">Rank</dt>
                         <dd class="font-serif mb-2">{rank}</dd>
-                        
-                        {/* <dt class="font-sans font-bold">Rating</dt>
-                        <dd class="font-serif mb-2">0</dd> */}
                     </dl>
                     <a href="#" class="block text-emerald-600" onClick={handleBookClick}>Write a Review</a>
                 </div>
