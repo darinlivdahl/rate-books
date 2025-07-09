@@ -15,14 +15,35 @@ The Rate Books web app allows users to browse best seller lists by category and 
 
 ### New York Times Books API
 
-### Google OAUTH 2.0 API
+Follow the steps at the [Get Started](https://developer.nytimes.com/get-started) page on the New York Times developer portal.
+
+When you create an app on the developer site, you will only need to enable the **_Books API_** from the list of available APIs.
+
+Make a note of your API key to use in the `.env` file mentioned below.
+
+### Google OAuth 2.0 API
+
+1. Go to [Google Cloud console](https://cloud.google.com/cloud-console) and login using a Google Account.
+2. In the top-right of the header, click on the **_Console_** link.
+3. Click the Project picker button next to the Google Cloud logo and search.
+4. In the Select a project modal window, click the New Project in the top right.
+5. Name the project **_Rate Books_**
+6. On the project welcome page, click on **APIs & Servies** under the Quick access section.
+7. On the APIs & servies page click the **Credentials** link in the left-hand navigation.
+8. On the Credentials page, click the + Create credentials link and choose **_OAuth client ID_**.
+9. For the Application type, choose **_Web application_**.
+10. Give the credential a name of **Rate Books**
+11. For the **Authorized JavaScript origins**, add URI for `http://localhost:8080`
+12. For the Authorized redirect URIs, add URI for `http://localhost:8080/auth/google/ratebooks`
+13. Click the Create button.
+14. When available, make note of the Client ID and Client Secret to be later used in the project `.env` file (see below).
 
 ## 📦 Installation
 
 ### 1. Clone the Repository
 ```
-git clone https://github.com/darinlivdahl/ratebooks.git
-cd ratebooks
+git clone https://github.com/darinlivdahl/rate-books.git
+cd rate-books
 ```
 ### 2. Install Backend Dependencies
 ```
@@ -77,7 +98,7 @@ DB_HOST=your_database_host_or_localhost
 DB_NAME=your_database_name
 DB_PASSWORD=your_database_password
 DB_PORT=5432
-NYT_API_KEY=your_new_york_times_books_api_key
+NYT_API_KEY=your_new_york_times_api_key
 SESSION_SECRET=your_session_secret
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
@@ -109,5 +130,5 @@ Frontend will run on http://localhost:8080
 cd ../
 npm run dev
 ```
-Make sure you are in the root project folder _ratebooks_
+Make sure you are in the root project folder _rate-books_
 
