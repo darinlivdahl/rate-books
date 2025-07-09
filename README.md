@@ -125,14 +125,13 @@ Server will run on http://localhost:8080
 cd ../frontend
 npm run dev
 ```
-Frontend will run on http://localhost:8080
-
-### 4. Or, start both Backend and Frontend concurrently
+### 4. Or, start both Backend and Frontend concurrently (recommended)
 ```
 cd ../
 npm run dev
 ```
-Make sure you are in the root project folder _rate-books_
+- Make sure you are in the root project folder _rate-books_
+- Run the web app in your browser at http://localhost:8080
 
 ## 📝 License
 
