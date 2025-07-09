@@ -87,7 +87,7 @@ CREATE TABLE ratings(
 ```
 ## ⚙️ Environment Variables
 
-Create a `.env` file in the `backend/` directory:
+Create a `.env` file in the `backend/` directory with the variables below. Modify values with your own.
 
 ```
 PORT=8080
